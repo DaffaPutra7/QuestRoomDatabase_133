@@ -1,6 +1,7 @@
 package com.example.pam_pertemuan9.ui.viewmodel
 
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -10,8 +11,22 @@ object PenyediaViewModel {
 
     val Factory = viewModelFactory {
         initializer {
-            MahasiswaViewModel(
+            HomeMhsViewModel(
                 krsApp().containerApp.repositoryMhs
+            )
+        }
+
+        initializer {
+            DetailMhsViewModel(
+                createSavedStateHandle(),
+                krsApp().containerApp.repositoryMhs
+            )
+        }
+
+        initializer {
+            UpdateMhsViewModel(
+                createSavedStateHandle(),
+                krsApp().containerApp.repositoryMhs,
             )
         }
     }
