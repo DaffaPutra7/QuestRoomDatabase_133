@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pam_pertemuan9.data.entity.Mahasiswa
 import com.example.pam_pertemuan9.repository.RepositoryMhs
 import com.example.pam_pertemuan9.ui.navigation.AlamatNavigasi
 import kotlinx.coroutines.flow.filterNotNull
@@ -52,5 +53,37 @@ class UpdateMhsViewModel (
         return errorState.inValid()
     }
 
+    fun updateData() {
+        val currentEvent = updateUIState.mahasiswaEvent
+
+        if (validateFields()) {
+            viewModelScope.launch {
+                try {
+                    repositoryMhs.updateMhs(currentEvent.toMahasiswaEntity())
+                    updateUIState = updateUIState.copy(
+                        snackBarMessage = "Data berhasil diupdate",
+                        mahasiswaEvent = MahasiswaEvent(),
+                        isEntryValid = FormErrorState()
+                    )
+                    println("snackBarMessage diatur: ${updateUIState.snackBarMessage}")
+                } catch (e: Exception) {
+                    updateUIState = updateUIState.copy(
+                        snackBarMessage = "Data gagal diupdate"
+                    )
+                }
+            }
+        } else {
+            updateUIState = updateUIState.copy(
+                snackBarMessage = "Data gagal diupdate"
+            )
+        }
+    }
+    fun resetSnackBarMessage() {
+        updateUIState = updateUIState.copy(snackBarMessage = null)
+    }
 
 }
+
+fun Mahasiswa.toUIStateMhs(): MhsUIState = MhsUIState(
+    mahasiswaEvent = this.toDetailUiEvent(),
+)
