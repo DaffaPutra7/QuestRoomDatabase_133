@@ -11,6 +11,12 @@ object PenyediaViewModel {
 
     val Factory = viewModelFactory {
         initializer {
+            MahasiswaViewModel(
+                krsApp().containerApp.repositoryMhs
+            )
+        }
+
+        initializer {
             HomeMhsViewModel(
                 krsApp().containerApp.repositoryMhs
             )
