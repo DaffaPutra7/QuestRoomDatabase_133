@@ -54,9 +54,10 @@ fun UpdateMhsView(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }, // Tempatkan Snackbar di Scaffold
         topBar = {
             TopAppBar(
-                judul = "Edit Mahasiswa",
-                showBackButton = true,
                 onBack = onBack,
+                showBackButton = true,
+                judul = "Edit Mahasiswa",
+                modifier = modifier,
             )
         }
     ) { padding ->

@@ -24,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pam_pertemuan9.ui.customwidget.TopAppBar
@@ -76,7 +75,8 @@ fun InsertMhsView(
             TopAppBar(
                 onBack = onBack,
                 showBackButton = true,
-                judul = "Tambah Mahasiswa"
+                judul = "Tambah Mahasiswa",
+                modifier = modifier
             )
 
             // Isi Body
