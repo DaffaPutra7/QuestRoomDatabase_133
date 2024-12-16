@@ -50,7 +50,7 @@ class UpdateMhsViewModel (
         )
 
         updateUIState = updateUIState.copy(isEntryValid = errorState)
-        return errorState.inValid()
+        return errorState.isValid()
     }
 
     fun updateData() {

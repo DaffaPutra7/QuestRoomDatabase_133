@@ -50,10 +50,9 @@ fun DetailMhsView(
     Scaffold(
         topBar = {
             TopAppBar(
-                judul = "Detail Mahasiswa",
-                showBackButton = true,
                 onBack = onBack,
-                modifier = modifier
+                showBackButton = true,
+                judul = "Detail Mahasiswa"
             )
         },
         floatingActionButton = {
